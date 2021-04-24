@@ -10,6 +10,12 @@ public class Menu {
 	private BufferedReader bReader;
 	private BufferedWriter bwriter;
 	
+	private final String PRINCIPAL_MENU = "principal menu"
+			+"\n1."
+			+"\n2."
+			+"\n3."
+			+"\n4."+"\n5.Exit\n";
+	
 	public Menu() {
 		exit = false;
 		bReader = new BufferedReader(new InputStreamReader(System.in));
@@ -21,7 +27,8 @@ public class Menu {
 		while (!exit) {
 			try {
 				
-				showPrincipalMenu(bwriter);
+				writeLine(PRINCIPAL_MENU,bwriter);
+				
 				int option = Integer.parseInt(readLine(bReader));
 				if (option < 1 && option > 5) {
 					throw new NumberFormatException();
@@ -49,11 +56,6 @@ public class Menu {
 		} 
 		
 		
-		
-	}
-	
-	private void showPrincipalMenu(BufferedWriter bwriter) throws IOException{
-		writeLine("principal menu"+"\n1."+"\n2."+"\n3."+"\n4."+"\n5.Exit\n",bwriter);
 		
 	}
 	
