@@ -138,7 +138,7 @@ public class Menu {
 					depList.add(dept);
 				}
 
-				generate.generateDeparment(depList, numInserts);
+				generate.generateDeparment(depList);
 				exit = true;
 				
 			} catch (IOException iOE) {
