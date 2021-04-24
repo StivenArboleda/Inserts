@@ -7,18 +7,22 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 public class Menu {
 	private boolean exit;
-	
+	private BufferedReader bReader;
+	private BufferedWriter bwriter;
 	
 	public Menu() {
 		exit = false;
+		bReader = new BufferedReader(new InputStreamReader(System.in));
+		bwriter = new BufferedWriter(new OutputStreamWriter(System.out));
+	
 	}
 	
 	public void start() {
 		while (!exit) {
 			try {
 				
-				showPrincipalMenu();
-				int option = Integer.parseInt(readLine());
+				showPrincipalMenu(bwriter);
+				int option = Integer.parseInt(readLine(bReader));
 				if (option < 1 && option > 5) {
 					throw new NumberFormatException();
 				}
@@ -35,7 +39,10 @@ public class Menu {
 		
 		try {
 			
-			writeLine("PROGRAM FINISHED");
+			writeLine("PROGRAM FINISHED",bwriter);
+			
+			bReader.close();
+			bwriter.close();
 			
 		} catch (IOException IOE) {
 			// TODO: handle exception
@@ -45,28 +52,24 @@ public class Menu {
 		
 	}
 	
-	private void showPrincipalMenu() throws IOException{
-		writeLine("principal menu"+"\n1."+"\n2."+"\n3."+"\n4."+"\n5.Exit\n");
+	private void showPrincipalMenu(BufferedWriter bwriter) throws IOException{
+		writeLine("principal menu"+"\n1."+"\n2."+"\n3."+"\n4."+"\n5.Exit\n",bwriter);
 		
 	}
 	
-	private String readLine() throws IOException{
+	private String readLine(BufferedReader bReader) throws IOException{
 		String str = "";
-		BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
 		while (str.equals("")) {
 			str = bReader.readLine();
 
 		}
-		
-		bReader.close();
+
 		return str;
 	}
 	
-	private void writeLine(String str) throws IOException{
-		BufferedWriter bwriter = new BufferedWriter(new OutputStreamWriter(System.out));
-		
+	private void writeLine(String str, BufferedWriter bwriter) throws IOException{
 		bwriter.write(str);
-		bwriter.close();
+		bwriter.flush();
 		
 	}
 	
