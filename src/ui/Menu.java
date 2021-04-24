@@ -5,10 +5,17 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import model.Deparment;
+import model.Generate;
 public class Menu {
 	private boolean exit;
 	private BufferedReader bReader;
 	private BufferedWriter bwriter;
+	private Generate generate;
 	
 	private final String PRINCIPAL_MENU = "principal menu"
 			+"\n1."
@@ -20,6 +27,7 @@ public class Menu {
 		exit = false;
 		bReader = new BufferedReader(new InputStreamReader(System.in));
 		bwriter = new BufferedWriter(new OutputStreamWriter(System.out));
+		generate = new Generate();
 	
 	}
 	
@@ -34,7 +42,7 @@ public class Menu {
 					throw new NumberFormatException();
 				}
 				
-				runOption(option);
+				runOption(option, bwriter);
 				
 			} catch (IOException IOE) {
 				// TODO: handle exception
@@ -75,19 +83,19 @@ public class Menu {
 		
 	}
 	
-	private void runOption(int op) {
+	private void runOption(int op,BufferedWriter bwriter) {
 		switch (op) {
 		case 1:
-			runOptionOne();
+			runOptionOne(bwriter);
 			break;
 		case 2:
-			runOptionTwo();
+			runOptionTwo(bwriter);
 			break;
 		case 3:
-			runOptionThree();
+			runOptionThree(bwriter);
 			break;
 		case 4:
-			runOptionFour();
+			runOptionFour(bwriter);
 			break;
 		case 5:
 			exit = true;
@@ -96,19 +104,58 @@ public class Menu {
 		
 	}
 	
-	private void runOptionOne() {
+	private void runOptionOne(BufferedWriter bwriter) {
+		boolean exit = false;
+		while (!exit) {
+			
+			try {
+				writeLine("Type the ammount of department inserts ",bwriter);
+				
+				int numInserts = Integer.parseInt(readLine(bReader));
+				
+				if (numInserts < 0) {
+					throw new NumberFormatException();
+				}
+				
+				List<Deparment> depList = Arrays.asList(new Deparment[numInserts]);
+				
+				for (Deparment deparment : depList) {
+					writeLine(" - type Depto name: ",bwriter);
+					String deptName = readLine(bReader);
+					
+					writeLine(" - type Depto number: ",bwriter);
+					String deptNo = readLine(bReader);
+					
+					writeLine(" - type Depto boss id: ",bwriter);
+					String mgrEmpNo = readLine(bReader);
+					
+					Deparment dept = new Deparment(deptName,deptNo,mgrEmpNo);
+					
+					depList.add(dept);
+				}
+				
+				generate.generateDeparment(depList, numInserts);
+				
+			} catch (IOException iOE) {
+				// TODO: handle exception
+			} catch (NumberFormatException nFE) {
+				// TODO: handle exception
+			}
+			
+		}
+		
 		
 	}
 	
-	private void runOptionTwo() {
+	private void runOptionTwo(BufferedWriter bwriter) {
 		
 	}
 	
-	private void runOptionThree() {
+	private void runOptionThree(BufferedWriter bwriter) {
 		
 	}
 	
-	private void runOptionFour() {
+	private void runOptionFour(BufferedWriter bwriter) {
 		
 	}
 	
