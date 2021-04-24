@@ -6,25 +6,17 @@ public class WorksOn {
 	
 	
 	private String empNo;
-	private String fName;
-	private String lName;
-	private String address;
-	private Date dob;
-	private char sex;
-	private String position;
-	private Deparment deptNo;
+	private String projNo;
+	private String dateWorked;
+	private String hoursWorked;
 	
 	
-	public WorksOn(String empNo, String fName, String lName, String address, Date dob, char sex, String position,
-			Deparment deptNo) {
+	public WorksOn(String empNo, String projNo, String dateWorked, String hoursWorked) {
+
 		this.empNo = empNo;
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.dob = dob;
-		this.sex = sex;
-		this.position = position;
-		this.deptNo = deptNo;
+		this.projNo = projNo;
+		this.dateWorked = dateWorked;
+		this.hoursWorked = hoursWorked;
 	}
 
 
@@ -38,74 +30,35 @@ public class WorksOn {
 	}
 
 
-	public String getfName() {
-		return fName;
+	public String getProjNo() {
+		return projNo;
 	}
 
 
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setProjNo(String projNo) {
+		this.projNo = projNo;
 	}
 
 
-	public String getlName() {
-		return lName;
+	public String getDateWorked() {
+		return dateWorked;
 	}
 
 
-	public void setlName(String lName) {
-		this.lName = lName;
+	public void setDateWorked(String dateWorked) {
+		this.dateWorked = dateWorked;
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getHoursWorked() {
+		return hoursWorked;
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-
-	public Date getDob() {
-		return dob;
-	}
-
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-
-
-	public char getSex() {
-		return sex;
-	}
-
-
-	public void setSex(char sex) {
-		this.sex = sex;
-	}
-
-
-	public String getPosition() {
-		return position;
-	}
-
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-
-	public Deparment getDeptNo() {
-		return deptNo;
-	}
-
-
-	public void setDeptNo(Deparment deptNo) {
-		this.deptNo = deptNo;
+	public void setHoursWorked(String hoursWorked) {
+		this.hoursWorked = hoursWorked;
 	}
 	
 	
+
 }
