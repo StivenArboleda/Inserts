@@ -1,13 +1,15 @@
 package model;
 
+import java.util.List;
+
 public class Generate {
 
-	public String generateDeparment(Deparment inserts, int loops) {
+	public String generateDeparment(List<Deparment> inserts, int loops) {
 		String insert = "";
 		
-		for(int i=0; i < loops; i++) {
+		for (Deparment deparment : inserts) {
 			
-			insert += "INSERT INTO Deparment VALUES(" + inserts.getDeptName() +","+ inserts.getDeptNo()+","+inserts.getMgrEmpno()+"); \n";
+			insert += "INSERT INTO Deparment VALUES(" + deparment.getDeptName() +","+ deparment.getDeptNo()+","+deparment.getMgrEmpno()+"); \n";
 			
 		}
 		

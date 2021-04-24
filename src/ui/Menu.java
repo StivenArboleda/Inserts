@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import model.Deparment;
@@ -117,9 +116,11 @@ public class Menu {
 					throw new NumberFormatException();
 				}
 				
-				List<Deparment> depList = Arrays.asList(new Deparment[numInserts]);
+				List<Deparment> depList = new ArrayList<>();
 				
-				for (Deparment deparment : depList) {
+				
+				for (int i = 0; i < numInserts; i++) {
+					
 					writeLine(" - type Depto name: ",bwriter);
 					String deptName = readLine(bReader);
 					
@@ -129,21 +130,23 @@ public class Menu {
 					writeLine(" - type Depto boss id: ",bwriter);
 					String mgrEmpNo = readLine(bReader);
 					
+					writeLine("NEW INSERT:", bwriter);
+					
+					
 					Deparment dept = new Deparment(deptName,deptNo,mgrEmpNo);
 					
 					depList.add(dept);
 				}
-				
+
 				generate.generateDeparment(depList, numInserts);
+				exit = true;
 				
 			} catch (IOException iOE) {
 				// TODO: handle exception
 			} catch (NumberFormatException nFE) {
 				// TODO: handle exception
-			}
-			
+			}	
 		}
-		
 		
 	}
 	
