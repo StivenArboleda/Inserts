@@ -1,19 +1,17 @@
 package model;
 
-import java.sql.Date;
-
 public class Employee {
 	
 	private String empNo;
 	private String fName;
 	private String lName;
 	private String address;
-	private Date dob;
+	private String dob;
 	private char sex;
 	private String position;
-	private Deparment deptNo;
+	private int deptNo;
 	
-	public Employee(String empNo, String fName, String lName, String address, Date dob, char sex, String position, Deparment deptNo) {
+	public Employee(String empNo, String fName, String lName, String address, String dob, char sex, String position, int deptNo) {
 		
 		this.empNo = empNo;
 		this.fName = fName;
@@ -57,11 +55,11 @@ public class Employee {
 		this.address = address;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
@@ -81,11 +79,11 @@ public class Employee {
 		this.position = position;
 	}
 
-	public Deparment getDeptNo() {
+	public int getDeptNo() {
 		return deptNo;
 	}
 
-	public void setDeptNo(Deparment deptNo) {
+	public void setDeptNo(int deptNo) {
 		this.deptNo = deptNo;
 	}
 	

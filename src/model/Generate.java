@@ -3,8 +3,22 @@ package model;
 import java.util.List;
 
 public class Generate {
+	
+	private String deptInsert;
+	private String empInsert;
+	private String projInsert;
+	private String wOInsert;
 
-	public String generateDeparment(List<Deparment> inserts) {
+	
+	
+	public Generate() {
+		deptInsert = "";
+		empInsert = "";
+		projInsert = "";
+		wOInsert = "";
+	}
+
+	public void generateDeparment(List<Deparment> inserts) {
 		String insert = "";
 		
 		for (Deparment deparment : inserts) {
@@ -13,10 +27,10 @@ public class Generate {
 			
 		}
 		
-		return insert;
+		deptInsert += insert;
 	}
 	
-	public String generateEmployee(List<Employee> inserts) {
+	public void generateEmployee(List<Employee> inserts) {
 		String insert = "";
 		
 		for (Employee employee : inserts) {
@@ -27,10 +41,10 @@ public class Generate {
 		}
 		
 		
-		return insert;
+		empInsert += insert;
 	}
 	
-	public String generateProject(List<Project> inserts) {
+	public void generateProject(List<Project> inserts) {
 		String insert = "INSERT INTO Project VALUES(";
 		
 		for (Project project : inserts) {
@@ -39,10 +53,10 @@ public class Generate {
 			
 		}
 		
-		return insert;
+		projInsert += insert;
 	}
 	
-	public String generateWorksOn(List<WorksOn> inserts) {
+	public void generateWorksOn(List<WorksOn> inserts) {
 		String insert = "INSERT INTO WorksOn VALUES(";
 		
 		for (WorksOn worksOn : inserts) {
@@ -52,8 +66,26 @@ public class Generate {
 		}
 		
 		
-		return insert;
+		wOInsert += insert;
 	}
 
+	public String getDeptInsert() {
+		return deptInsert;
+	}
+
+	public String getEmpInsert() {
+		return empInsert;
+	}
+
+	public String getProjInsert() {
+		return projInsert;
+	}
+
+	public String getwOInsert() {
+		return wOInsert;
+	}
+	
+	
+	
 
 }

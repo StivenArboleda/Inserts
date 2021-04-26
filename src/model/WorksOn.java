@@ -1,17 +1,15 @@
 package model;
 
-import java.sql.Date;
-
 public class WorksOn {
 	
 	
-	private String empNo;
-	private String projNo;
+	private int empNo;
+	private int projNo;
 	private String dateWorked;
-	private String hoursWorked;
+	private int hoursWorked;
 	
 	
-	public WorksOn(String empNo, String projNo, String dateWorked, String hoursWorked) {
+	public WorksOn(int empNo, int projNo, String dateWorked, int hoursWorked) {
 
 		this.empNo = empNo;
 		this.projNo = projNo;
@@ -20,22 +18,22 @@ public class WorksOn {
 	}
 
 
-	public String getEmpNo() {
+	public int getEmpNo() {
 		return empNo;
 	}
 
 
-	public void setEmpNo(String empNo) {
+	public void setEmpNo(int empNo) {
 		this.empNo = empNo;
 	}
 
 
-	public String getProjNo() {
+	public int getProjNo() {
 		return projNo;
 	}
 
 
-	public void setProjNo(String projNo) {
+	public void setProjNo(int projNo) {
 		this.projNo = projNo;
 	}
 
@@ -50,12 +48,12 @@ public class WorksOn {
 	}
 
 
-	public String getHoursWorked() {
+	public int getHoursWorked() {
 		return hoursWorked;
 	}
 
 
-	public void setHoursWorked(String hoursWorked) {
+	public void setHoursWorked(int hoursWorked) {
 		this.hoursWorked = hoursWorked;
 	}
 	

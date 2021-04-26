@@ -2,21 +2,21 @@ package model;
 
 public class Project {
 	
-	private String projNo;
+	private int projNo;
 	private String projName;
-	private Deparment deptNo;
+	private int deptNo;
 	
-	public Project(String projNo, String projName, Deparment deptNo) {
+	public Project(int projNo, String projName, int deptNo) {
 		this.projNo = projNo;
 		this.projName = projName;
 		this.deptNo = deptNo;
 	}
 
-	public String getProjNo() {
+	public int getProjNo() {
 		return projNo;
 	}
 
-	public void setProjNo(String projNo) {
+	public void setProjNo(int projNo) {
 		this.projNo = projNo;
 	}
 
@@ -28,11 +28,11 @@ public class Project {
 		this.projName = projName;
 	}
 
-	public Deparment getDeptNo() {
+	public int getDeptNo() {
 		return deptNo;
 	}
 
-	public void setDeptNo(Deparment deptNo) {
+	public void setDeptNo(int deptNo) {
 		this.deptNo = deptNo;
 	}
 	
