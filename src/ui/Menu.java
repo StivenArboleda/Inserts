@@ -16,6 +16,7 @@ import model.Generate;
 import model.Project;
 import model.WorksOn;
 public class Menu {
+	
 	private final String PATH = "data/Inserts.sql";
 	private final String PRINCIPAL_MENU = "principal menu"
 			+"\n1.Department."
@@ -107,6 +108,8 @@ public class Menu {
 			runOptionFour(bwriter);
 			break;
 		case 5:
+			runOptionFive(bwriter);
+		case 6:
 			exit = true;
 			export();
 			break;
@@ -330,6 +333,22 @@ public class Menu {
 		
 	}
 	
+	private void runOptionFive(BufferedWriter bw) {
+		try {
+			writeLine(" - type how many names you are going to generate: ", bw);
+			int names = Integer.parseInt(readLine(bReader));
+			String[] str = generate.genereFullName(names);
+			
+			for(int i = 0; i < str.length; i++) {
+				System.out.println(str[i]);
+			}
+			
+		}catch (IOException e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
 	private void validateDate(String dOB) throws NumberFormatException{
 		
 		String[] arDOB = dOB.split("/");
@@ -411,6 +430,7 @@ public class Menu {
 			e.printStackTrace();
 		}
 	}
+
 	
 	
 }

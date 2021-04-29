@@ -85,6 +85,24 @@ public class Generate {
 		return wOInsert;
 	}
 	
+	public String[] genereFullName(int numbers) {
+		
+		String[] fullName = new String[numbers];
+		
+		String[] nombres = { "Andrea", "David", "Bartolome", "Alejandoro", "Striven", "Baltasar", "Sebastian", "Bartolo", "Bartolomé", "Lorena", 
+				"Isabella", "Valentina", "Daniela", "Andrea", "Carlos", "Laura", "Carolina", "Camila", "Jesús", "Miguel"};
+		
+		String[] apellidos = { "Gomez", "Guerrero", "Cardenas", "Ordoñez", "Cardona", "Cardoso", "Polo", "Carillo", "Hurtado", "Castillo", 
+				"Castaño", "Castro", "Garcia", "Arboleda", "Henao", "Cortes", "Mora", "Ortiz" };
+
+		for (int i = 0; i < numbers; i++) {
+			fullName[i] = 
+					(char)34 + nombres[(int) (Math.floor(Math.random() * ((nombres.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
+				+ (char)34 + apellidos[(int) (Math.floor(Math.random() * ((apellidos.length - 1) - 0 + 1) + 0))]+ (char)34;
+		}
+		
+		return fullName;
+	}
 	
 	
 
