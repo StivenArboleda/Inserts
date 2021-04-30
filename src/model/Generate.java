@@ -9,7 +9,7 @@ public class Generate {
 	private String empInsert;
 	private String projInsert;
 	private String wOInsert;
-
+	private String idDept;
 	
 	
 	public Generate() {
@@ -17,46 +17,10 @@ public class Generate {
 		empInsert = "";
 		projInsert = "";
 		wOInsert = "";
+		idDept = "";
 	}
 
-	public void generateDeparment(List<Deparment> inserts) {
-		String insert = "";
-		
-		for (Deparment deparment : inserts) {
-			
-			insert += "INSERT INTO Deparment VALUES(" + deparment.getDeptName() +","+ deparment.getDeptNo()+","+deparment.getMgrEmpno()+"); \n";
-			
-		}
-		
-		deptInsert += insert;
-	}
-	
-	public void generateEmployee(List<Employee> inserts) {
-		String insert = "";
-		
-		for (Employee employee : inserts) {
-			
-			insert += "INSERT INTO Employee VALUES(" + employee.getEmpNo()+","+ employee.getfName()+","+employee.getlName()+","+
-					employee.getAddress()+","+ employee.getDob()+","+employee.getSex()+","+employee.getPosition()+","+employee.getDeptNo()+"); \n";
-			
-		}
-		
-		
-		empInsert += insert;
-	}
-	
-	public void generateProject(List<Project> inserts) {
-		String insert = "INSERT INTO Project VALUES(";
-		
-		for (Project project : inserts) {
-			
-			insert += "INSERT INTO Employee VALUES(" + project.getProjNo()+","+ project.getProjName()+","+project.getDeptNo()+"); \n";
-			
-		}
-		
-		projInsert += insert;
-	}
-	
+
 	public void generateWorksOn(List<WorksOn> inserts) {
 		String insert = "INSERT INTO WorksOn VALUES(";
 		
@@ -124,21 +88,16 @@ public class Generate {
 
 
 		for (int i = 0; i < numbers; i++) {
-			insert[i] = "INSERT TO employee VALUES("
+			insert[i] = "INSERT TO deparment VALUES("
 				+ (char)34 + "D"+ i + (char)34+", " 
 				+ (char)34 + name[i] + (char)34+ ", "
 				+ ");";
-
+			idDept += "D"+ i +","; 
 		}
+
 		
 		return insert;
 	}
-	
-	
-	
-	
-	
-	
 	
 	private String genereteSex() {
 		String[] genre = {"F", "M"};
@@ -166,5 +125,38 @@ public class Generate {
 		return ((int) (Math.random() * 28) + 1) + "/"+ ((int) (Math.random() * 11) + 1) +"/"+ (min + rand.nextInt(max - min) + 1);
 		
 	}
+	
+	public String[] generateInsertProject(int numbers) {
+
+		String[] insert = new String[numbers];
+
+		String[] name = { "Crecimiento", "Exportar", "Importar", "Expansion", "Franquicias", "Migrar",
+				"Revision", "Publicidad"};
+		
+		String[] id = idDept.split(",");
+		
+		for (int i = 0; i < numbers; i++) {
+			
+			insert[i] = "INSERT TO project VALUES("
+				+ (char)34 + "PROJ"+ i + (char)34+", " 
+				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
+				+ (char)34 + id[i] + (char)34 + ");";
+			
+		}
+		
+
+		return insert;
+
+	}
+	
+//	private String idDeparment(int i) {
+//		
+//		String id ="";
+//		//String[] parts = idDept.split(",");
+//		for (int j = 0; j < i; j++) {
+//			id += idDept;
+//		}
+//		return id;
+//	}
 
 }

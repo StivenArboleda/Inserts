@@ -148,49 +148,17 @@ public class Menu {
 	}
 	
 	private void runOptionThree(BufferedWriter bwriter) {
-		boolean exit = false;
-		while (!exit) {
+		try {
+			writeLine(" - type how many names you are going to generate: ", bwriter);
+			int names = Integer.parseInt(readLine(bReader));
+			String[] str = generate.generateInsertProject(names);
 			
-			try {
-				writeLine("Type the ammount of proyects inserts ",bwriter);
-				
-				int numInserts = Integer.parseInt(readLine(bReader));
-				
-				if (numInserts < 0) {
-					throw new NumberFormatException();
-				}
-				
-				List<Project> projList = new ArrayList<>();
-				
-				
-				for (int i = 0; i < numInserts; i++) {
-					
-					writeLine(" - type Project number: ",bwriter);
-					int projNo = Integer.parseInt(readLine(bReader));
-					
-					writeLine(" - type Project name: ",bwriter);
-					String projName = readLine(bReader);
-					
-					writeLine(" - type Project depto number: ",bwriter);
-					int deptNo = Integer.parseInt( readLine(bReader) );
-
-					writeLine("\nNEW INSERT:", bwriter);		
-					
-					
-					Project project = new Project(projNo, projName, deptNo);
-					
-					projList.add(project);
-				}
-
-				generate.generateProject(projList);
-				exit = true;
-				
-			} catch (IOException iOE) {
-				// TODO: handle exception
-			} catch (NumberFormatException nFE) {
-				// TODO: handle exception
+			for(int i = 0; i < str.length; i++) {
+				System.out.println(str[i]);
 			}
 			
+		}catch (IOException e) {
+			// TODO: handle exception
 		}
 	}
 	
