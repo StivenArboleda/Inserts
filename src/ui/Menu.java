@@ -108,8 +108,6 @@ public class Menu {
 			runOptionFour(bwriter);
 			break;
 		case 5:
-			runOptionFive(bwriter);
-		case 6:
 			exit = true;
 			export();
 			break;
@@ -118,117 +116,34 @@ public class Menu {
 	}
 	
 	private void runOptionOne(BufferedWriter bwriter) {
-		boolean exit = false;
-		while (!exit) {
+		try {
+			writeLine(" - type how many names you are going to generate: ", bwriter);
+			int names = Integer.parseInt(readLine(bReader));
+			String[] str = generate.genereInsertDeparment(names);
 			
-			try {
-				writeLine("Type the ammount of department inserts ",bwriter);
-				
-				int numInserts = Integer.parseInt(readLine(bReader));
-				
-				if (numInserts < 0) {
-					throw new NumberFormatException();
-				}
-				
-				List<Deparment> depList = new ArrayList<>();
-				
-				
-				for (int i = 0; i < numInserts; i++) {
-					
-					writeLine(" - type Depto name: ",bwriter);
-					String deptName = readLine(bReader);
-					
-					writeLine(" - type Depto number: ",bwriter);
-					String deptNo = readLine(bReader);
-					
-					writeLine(" - type Depto boss id: ",bwriter);
-					String mgrEmpNo = readLine(bReader);
-					
-					writeLine("NEW INSERT:", bwriter);
-					
-					
-					Deparment dept = new Deparment(deptName,deptNo,mgrEmpNo);
-					
-					depList.add(dept);
-				}
-
-				generate.generateDeparment(depList);
-				exit = true;
-				
-			} catch (IOException iOE) {
-				// TODO: handle exception
-			} catch (NumberFormatException nFE) {
-				// TODO: handle exception
-			}	
+			for(int i = 0; i < str.length; i++) {
+				System.out.println(str[i]);
+			}
+			
+		}catch (IOException e) {
+			// TODO: handle exception
 		}
 		
 	}
+		
 	
 	private void runOptionTwo(BufferedWriter bwriter) {
-		boolean exit = false;
-		while (!exit) {
+		try {
+			writeLine(" - type how many names you are going to generate: ", bwriter);
+			int names = Integer.parseInt(readLine(bReader));
+			String[] str = generate.genereInsertEmployee(names);
 			
-			try {
-				writeLine("Type the ammount of emplyees inserts ",bwriter);
-				
-				int numInserts = Integer.parseInt(readLine(bReader));
-				
-				if (numInserts < 0) {
-					throw new NumberFormatException();
-				}
-				
-				List<Employee> empList = new ArrayList<>();
-				
-				
-				for (int i = 0; i < numInserts; i++) {
-					
-					writeLine(" - type Employee first name: ",bwriter);
-					String empFName = readLine(bReader);
-					
-					writeLine(" - type Employee last name: ",bwriter);
-					String empLName = readLine(bReader);
-					
-					writeLine(" - type Employee number: ",bwriter);
-					String empNo = readLine(bReader);
-					
-					writeLine(" - type Employee adress: ",bwriter);
-					String empAddress = readLine(bReader);
-					
-					writeLine(" - type Employee date of birth: ",bwriter);
-					String dOB = readLine(bReader);
-					
-					validateDate(dOB);
-					
-					writeLine(" - type Employee sex: ",bwriter);
-					char sex = readLine(bReader).charAt(0);
-					
-					if(!(sex == 'M'||sex == 'F')) {
-						throw new NumberFormatException();
-					}
-					
-					writeLine(" - type Employee depto: ",bwriter);
-					int deptNo = Integer.parseInt( readLine(bReader) );
-					
-					writeLine(" - type Employee position: ",bwriter);
-					String position = readLine(bReader);
-					
-					writeLine("\nNEW INSERT:", bwriter);		
-					
-					
-					Employee employee = new Employee(empNo, empFName, empLName, empAddress, dOB, sex, position, deptNo);
-					
-					empList.add(employee);
-				}
-
-				generate.generateEmployee(empList);
-				exit = true;
-				
-			} catch (IOException iOE) {
-				// TODO: handle exception
-			} catch (NumberFormatException nFE) {
-				System.out.println(nFE.getMessage());
+			for(int i = 0; i < str.length; i++) {
+				System.out.println(str[i]);
 			}
 			
+		}catch (IOException e) {
+			// TODO: handle exception
 		}
 	}
 	
@@ -332,22 +247,7 @@ public class Menu {
 		}
 		
 	}
-	
-	private void runOptionFive(BufferedWriter bw) {
-		try {
-			writeLine(" - type how many names you are going to generate: ", bw);
-			int names = Integer.parseInt(readLine(bReader));
-			String[] str = generate.genereFullName(names);
-			
-			for(int i = 0; i < str.length; i++) {
-				System.out.println(str[i]);
-			}
-			
-		}catch (IOException e) {
-			// TODO: handle exception
-		}
 		
-	}
 	
 	private void validateDate(String dOB) throws NumberFormatException{
 		
