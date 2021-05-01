@@ -203,7 +203,7 @@ public class Menu {
 					
 				}
 
-				generate.generateWorksOn(wOList);
+				//generate.generateWorksOn(wOList);
 				exit = true;
 				
 			} catch (IOException iOE) {

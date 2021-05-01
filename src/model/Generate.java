@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Generate {
 	
-	private String deptInsert;
+	private String[] deptInsert;
 	private String empInsert;
 	private String projInsert;
 	private String wOInsert;
@@ -13,29 +13,21 @@ public class Generate {
 	
 	
 	public Generate() {
-		deptInsert = "";
+		deptInsert = genereInsertDeparment(20);
 		empInsert = "";
 		projInsert = "";
 		wOInsert = "";
 		idDept = "";
+		
 	}
 
-
-	public void generateWorksOn(List<WorksOn> inserts) {
-		String insert = "INSERT INTO WorksOn VALUES(";
-		
-		for (WorksOn worksOn : inserts) {
-			
-			insert += "INSERT INTO Employee VALUES(" + worksOn.getEmpNo()+","+ worksOn.getProjNo()+","+worksOn.getDateWorked()+","+worksOn.getHoursWorked()+"); \n";
-			
-		}
-		
-		
-		wOInsert += insert;
-	}
 
 	public String getDeptInsert() {
-		return deptInsert;
+		String re = "";
+		for (int i = 0; i < deptInsert.length; i++) {
+			re += deptInsert[i] +"\n";
+		}
+		return re;
 	}
 
 	public String getEmpInsert() {
@@ -55,6 +47,7 @@ public class Generate {
 	
 	public String[] genereInsertEmployee(int numbers) {
 		
+		
 		String[] insert = new String[numbers];
 		
 		String[] name = { "Andrea", "David", "Bartolome", "Alejandoro", "Striven", "Baltasar", "Sebastian", "Bartolo", "Bartolomé", "Lorena", 
@@ -64,16 +57,29 @@ public class Generate {
 				"Castaño", "Castro", "Garcia", "Arboleda", "Henao", "Cortes", "Mora", "Ortiz" };
 		
 		String[] position = {"Maquinario", "De planta", "Operario", "Supervisor"};
+		
 
 		for (int i = 0; i < numbers; i++) {
-			insert[i] = "INSERT TO employee VALUES("
-				+ (char)34 + "E"+ i + (char)34+", " 
+			
+			if( i < 20) {
+				insert[i] = "INSERT TO employee VALUES(" 
+				+ (char)34 + "E-"+ i + (char)34+", " 
+				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
+				+ (char)34 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)34+ ", "
+				+ (char)34 + generateAddres() + (char)34+ ", "
+				+ (char)34 + generateDOB()+(char)34+ ", "
+				+ genereteSex() +", "
+				+ (char)34 + "Jefe);";
+			}else {
+				insert[i] = "INSERT TO employee VALUES(" 
+				+ (char)34 + "E-"+ i + (char)34+", " 
 				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
 				+ (char)34 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)34+ ", "
 				+ (char)34 + generateAddres() + (char)34+ ", "
 				+ (char)34 + generateDOB()+(char)34+ ", "
 				+ genereteSex() +", "
 				+ (char)34 + position[(int) (Math.floor(Math.random() * ((position.length - 1) - 0 + 1) + 0))]+ (char)34+ ");";
+			}				
 		}
 		
 		return insert;
@@ -84,14 +90,14 @@ public class Generate {
 		String[] insert = new String[numbers];
 		
 		String[] name = { "Sistemas", "Administracion", "Contable", "Marketing", "Soporte", "Recursos Humanos", "Mantenimiento", "Produccion", "Ventas",
-				"Juridico", "Financiero", "Comercial", "Logistica", "Control y gestión", "Compras",  "General", "Almacen", "Internacional" };
+				"Juridico", "Financiero", "Comercial", "Logistica", "Control y gestión", "Compras",  "General", "Almacen", "Internacional", "Calidad","Inventario"};
 
 
-		for (int i = 0; i < numbers; i++) {
+		for (int i = 0; i < name.length; i++) {
 			insert[i] = "INSERT TO deparment VALUES("
 				+ (char)34 + "D"+ i + (char)34+", " 
 				+ (char)34 + name[i] + (char)34+ ", "
-				+ ");";
+				+ "NULL);";
 			idDept += "D"+ i +","; 
 		}
 
