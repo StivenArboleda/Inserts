@@ -19,11 +19,9 @@ public class Menu {
 	
 	private final String PATH = "data/Inserts.sql";
 	private final String PRINCIPAL_MENU = "principal menu"
-			+"\n1.Department."
-			+"\n2.Employee."
-			+"\n3.Proyect."
-			+"\n4.Works On."
-			+"\n5.Exit & generate.\n";
+			+"\n 1.Employee."
+			+"\n 2.Proyect."
+			+"\n 4.Exit & generate.\n";
 	
 	private boolean exit;
 	private BufferedReader bReader;
@@ -96,18 +94,12 @@ public class Menu {
 	private void runOption(int op,BufferedWriter bwriter) {
 		switch (op) {
 		case 1:
-			runOptionOne(bwriter);
-			break;
-		case 2:
 			runOptionTwo(bwriter);
 			break;
-		case 3:
+		case 2:
 			runOptionThree(bwriter);
 			break;
-		case 4:
-			runOptionFour(bwriter);
-			break;
-		case 5:
+		case 3:
 			exit = true;
 			export();
 			break;
@@ -115,32 +107,38 @@ public class Menu {
 		
 	}
 	
-	private void runOptionOne(BufferedWriter bwriter) {
-		try {
-			writeLine(" - type how many names you are going to generate: ", bwriter);
-			int names = Integer.parseInt(readLine(bReader));
-			String[] str = generate.genereInsertDeparment(names);
-			
-			for(int i = 0; i < str.length; i++) {
-				System.out.println(str[i]);
-			}
-			
-		}catch (IOException e) {
-			// TODO: handle exception
-		}
-		
-	}
+//	private void runOptionOne(BufferedWriter bwriter) {
+//		try {
+//			writeLine(" - type how many names you are going to generate: ", bwriter);
+//			int names = Integer.parseInt(readLine(bReader));
+//			if(names < 20) {
+//				System.out.println("El número debe serinimo 20");
+//				runOptionOne(bwriter);
+//			}else {
+//				String[] str = generate.genereInsertDeparment(names);
+//				
+//				for(int i = 0; i < str.length; i++) {
+//					System.out.println(str[i]);
+//				}
+//			}
+//			
+//		}catch (IOException e) {
+//			// TODO: handle exception
+//		}
+//		
+//	}
 		
 	
 	private void runOptionTwo(BufferedWriter bwriter) {
 		try {
-			writeLine(" - type how many names you are going to generate: ", bwriter);
+			writeLine(" - type how many EMPLOYEE you are going to generate: ", bwriter);
 			int names = Integer.parseInt(readLine(bReader));
 			String[] str = generate.genereInsertEmployee(names);
 			
 			for(int i = 0; i < str.length; i++) {
 				System.out.println(str[i]);
 			}
+			System.out.println(generate.generateUpdate());
 			
 		}catch (IOException e) {
 			// TODO: handle exception
@@ -149,10 +147,10 @@ public class Menu {
 	
 	private void runOptionThree(BufferedWriter bwriter) {
 		try {
-			writeLine(" - type how many names you are going to generate: ", bwriter);
+			writeLine(" - type how many PROJECTS you are going to generate: ", bwriter);
 			int names = Integer.parseInt(readLine(bReader));
 			String[] str = generate.generateInsertProject(names);
-			
+			//System.out.println(generate.generateInsertProject(names));
 			for(int i = 0; i < str.length; i++) {
 				System.out.println(str[i]);
 			}
@@ -161,100 +159,47 @@ public class Menu {
 			// TODO: handle exception
 		}
 	}
+
+		
+//	
+//	private void validateDate(String dOB) throws NumberFormatException{
+//		
+//		String[] arDOB = dOB.split("/");
+//
+//		if (!(arDOB.length == 3)) {
+//			throw new NumberFormatException("0");
+//			
+//		}else if (!(Integer.parseInt(arDOB[0]) > 0 && Integer.parseInt(arDOB[0]) <= 31)) {
+//			throw new NumberFormatException("1");
+//			
+//		}else if (!(Integer.parseInt(arDOB[1]) > 0 && Integer.parseInt(arDOB[1]) <= 12)) {
+//			throw new NumberFormatException("2");
+//			
+//		}else if (!(Integer.parseInt(arDOB[2]) > 1959 && Integer.parseInt(arDOB[2]) <= 2003)) {
+//			throw new NumberFormatException("3");
+//			
+//		}
+//		
+//	}
 	
-	private void runOptionFour(BufferedWriter bwriter) {
-		boolean exit = false;
-		while (!exit) {
-			
-			try {
-				writeLine("Type the ammount of proyects inserts ",bwriter);
-				
-				int numInserts = Integer.parseInt(readLine(bReader));
-				
-				if (numInserts < 0) {
-					throw new NumberFormatException();
-				}
-				
-				List<WorksOn> wOList = new ArrayList<>();
-				
-				
-				for (int i = 0; i < numInserts; i++) {
-					
-					writeLine(" - type current Project number: ",bwriter);
-					int projNo = Integer.parseInt(readLine(bReader));
-					
-					writeLine(" - type current employee number: ",bwriter);
-					int empNo = Integer.parseInt(readLine(bReader));
-					
-					writeLine(" - type the date worked: ",bwriter);
-					String date = readLine(bReader);
-					
-					validateDateWO(date);
-					
-					writeLine(" - type the worked hours: ",bwriter);
-					int hoursWorked = Integer.parseInt(readLine(bReader));
-
-					writeLine("\nNEW INSERT:", bwriter);		
-					
-					
-					WorksOn worksOn = new WorksOn(empNo, projNo, date, hoursWorked);
-					
-					wOList.add(worksOn);
-					
-				}
-
-				//generate.generateWorksOn(wOList);
-				exit = true;
-				
-			} catch (IOException iOE) {
-				// TODO: handle exception
-			} catch (NumberFormatException nFE) {
-				
-			}
-			
-		}
-		
-	}
-		
-	
-	private void validateDate(String dOB) throws NumberFormatException{
-		
-		String[] arDOB = dOB.split("/");
-
-		if (!(arDOB.length == 3)) {
-			throw new NumberFormatException("0");
-			
-		}else if (!(Integer.parseInt(arDOB[0]) > 0 && Integer.parseInt(arDOB[0]) <= 31)) {
-			throw new NumberFormatException("1");
-			
-		}else if (!(Integer.parseInt(arDOB[1]) > 0 && Integer.parseInt(arDOB[1]) <= 12)) {
-			throw new NumberFormatException("2");
-			
-		}else if (!(Integer.parseInt(arDOB[2]) > 1959 && Integer.parseInt(arDOB[2]) <= 2003)) {
-			throw new NumberFormatException("3");
-			
-		}
-		
-	}
-	
-	private void validateDateWO(String dOB) throws NumberFormatException{
-		String[] arDOB = dOB.split("/");
-
-		if (!(arDOB.length == 3)) {
-			throw new NumberFormatException("0");
-			
-		}else if (!(Integer.parseInt(arDOB[0]) > 0 && Integer.parseInt(arDOB[0]) <= 31)) {
-			throw new NumberFormatException("1");
-			
-		}else if (!(Integer.parseInt(arDOB[1]) > 0 && Integer.parseInt(arDOB[1]) <= 12)) {
-			throw new NumberFormatException("2");
-			
-		}else if (!(Integer.parseInt(arDOB[2]) > 1959 && Integer.parseInt(arDOB[2]) <= 2021)) {
-			throw new NumberFormatException("3");
-			
-		}
-		
-	}
+//	private void validateDateWO(String dOB) throws NumberFormatException{
+//		String[] arDOB = dOB.split("/");
+//
+//		if (!(arDOB.length == 3)) {
+//			throw new NumberFormatException("0");
+//			
+//		}else if (!(Integer.parseInt(arDOB[0]) > 0 && Integer.parseInt(arDOB[0]) <= 31)) {
+//			throw new NumberFormatException("1");
+//			
+//		}else if (!(Integer.parseInt(arDOB[1]) > 0 && Integer.parseInt(arDOB[1]) <= 12)) {
+//			throw new NumberFormatException("2");
+//			
+//		}else if (!(Integer.parseInt(arDOB[2]) > 1959 && Integer.parseInt(arDOB[2]) <= 2021)) {
+//			throw new NumberFormatException("3");
+//			
+//		}
+//		
+//	}
 	
 	
 	private void export() {
@@ -290,7 +235,6 @@ public class Menu {
 				bWriter.write(generate.getwOInsert());
 	
 			}
-			
 
 			bWriter.close();
 			
