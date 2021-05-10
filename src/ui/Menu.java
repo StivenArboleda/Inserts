@@ -7,14 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
-
-import model.Deparment;
-import model.Employee;
 import model.Generate;
-import model.Project;
-import model.WorksOn;
 public class Menu {
 	
 	private final String PATH = "data/Inserts.sql";
@@ -132,8 +125,11 @@ public class Menu {
 	private void runOptionTwo(BufferedWriter bwriter) {
 		try {
 			writeLine(" - type how many EMPLOYEE you are going to generate: ", bwriter);
-			int names = Integer.parseInt(readLine(bReader));
-			String[] str = generate.genereInsertEmployee(names);
+			int ammount = Integer.parseInt(readLine(bReader));
+			if (ammount < 20) {
+				throw new NumberFormatException();
+			}
+			String[] str = generate.generateInsertEmployee(ammount);
 			
 			for(int i = 0; i < str.length; i++) {
 				System.out.println(str[i]);
@@ -141,15 +137,21 @@ public class Menu {
 			System.out.println(generate.generateUpdate());
 			
 		}catch (IOException e) {
-			// TODO: handle exception
+			
+		}catch (NumberFormatException NfE) {
+			System.err.println("The number of employees must be over 20.");
+			
 		}
 	}
 	
 	private void runOptionThree(BufferedWriter bwriter) {
 		try {
 			writeLine(" - type how many PROJECTS you are going to generate: ", bwriter);
-			int names = Integer.parseInt(readLine(bReader));
-			String[] str = generate.generateInsertProject(names);
+			int ammount  = Integer.parseInt(readLine(bReader));
+			if (ammount < 20) {
+				throw new NumberFormatException();
+			}
+			String[] str = generate.generateInsertProject(ammount);
 			//System.out.println(generate.generateInsertProject(names));
 			for(int i = 0; i < str.length; i++) {
 				System.out.println(str[i]);
@@ -157,6 +159,9 @@ public class Menu {
 			
 		}catch (IOException e) {
 			// TODO: handle exception
+		}catch (NumberFormatException NfE) {
+			System.err.println("The number of employees must be over 20.");
+			
 		}
 	}
 

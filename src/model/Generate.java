@@ -1,14 +1,12 @@
 package model;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class Generate {
 	
 	private String[] deptInsert;
 	private String[] empInsert;
-	private String projInsert;
+	private String[] projInsert;
 	private String wOInsert;
 	private String idDept;
 	
@@ -16,7 +14,7 @@ public class Generate {
 	public Generate() {
 		deptInsert = genereInsertDeparment(20);
 		empInsert = new String [] {};
-		projInsert = "";
+		projInsert = new String [] {};
 		wOInsert = "";
 		idDept = "";
 		
@@ -28,20 +26,26 @@ public class Generate {
 		for (int i = 0; i < deptInsert.length; i++) {
 			re += deptInsert[i] +"\n";
 		}
-		re = generateUpdate();
+		re += generateUpdate();
 		return re;
 	}
 
 	public String getEmpInsert() {
 		String re = "";
-		for (int i = 0; i < deptInsert.length; i++) {
-			
+		for (int i = 0; i < empInsert.length; i++) {
+			re += empInsert[i] +"\n";
 		}
+		//re += generateUpdate();
 		return re;
 	}
 
 	public String getProjInsert() {
-		return projInsert;
+		String re = "";
+		for (int i = 0; i < projInsert.length; i++) {
+			re += projInsert[i] +"\n";
+		}
+
+		return re;
 	}
 
 	public String getwOInsert() {
@@ -51,10 +55,9 @@ public class Generate {
 	
 	//===================================INSERT EMPLOYEE===================================================
 	
-	public String[] genereInsertEmployee(int numbers) {
+	public String[] generateInsertEmployee(int ammount) {
 		
-		
-		String[] insert = new String[numbers];
+		String[] insert = new String[ammount];
 		
 		String[] name = { "Andrea", "David", "Bartolome", "Alejandoro", "Striven", "Baltasar", "Sebastian", "Bartolo", "Bartolomé", "Lorena", 
 				"Isabella", "Valentina", "Daniela", "Andrea", "Carlos", "Laura", "Carolina", "Camila", "Jesús", "Miguel"};
@@ -65,10 +68,10 @@ public class Generate {
 		String[] position = {"Maquinario", "De planta", "Operario", "Supervisor"};
 		
 
-		for (int i = 0; i < numbers; i++) {
+		for (int i = 0; i < ammount; i++) {
 			
 			if( i < 20) {
-				insert[i] = "INSERT TO employee VALUES(" 
+				insert[i] = "INSERT INTO employee VALUES(" 
 				+ (char)34 + "E-"+ i + (char)34+", " 
 				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
 				+ (char)34 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)34+ ", "
@@ -78,7 +81,7 @@ public class Generate {
 				+ (char)34 + "Jefe" + (char)34 + ", "
 				+ (char)34 + "E" + i +(char)34 + ");";
 			}else {
-				insert[i] = "INSERT TO employee VALUES(" 
+				insert[i] = "INSERT INTO employee VALUES(" 
 				+ (char)34 + "E-"+ i + (char)34+", " 
 				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
 				+ (char)34 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)34+ ", "
@@ -89,6 +92,8 @@ public class Generate {
 				+ (char)34 + "E" +((int) (Math.random() * 20)) + (char)34 + ");";
 			}				
 		}
+		
+		empInsert = insert;
 		
 		return insert;
 	}
@@ -102,7 +107,7 @@ public class Generate {
 
 
 		for (int i = 0; i < name.length; i++) {
-			insert[i] = "INSERT TO deparment VALUES("
+			insert[i] = "INSERT INTO deparment VALUES("
 				+ (char)34 + "D"+ i + (char)34+", " 
 				+ (char)34 + name[i] + (char)34+ ", "
 				+ "NULL);";
@@ -150,16 +155,16 @@ public class Generate {
 				"Revision", "Publicidad"};
 		
 		for (int i = 0; i < numbers; i++) {
-			
-			insert[i] += "INSERT TO project VALUES("
+			insert[i] = "";
+			insert[i] += "INSERT INTO project VALUES("
 				+ (char)34 + "PROJ-"+ i + (char)34+", " 
 				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
 				+ (char)34 + "E"+((int)(Math.random() * 19)+1) + (char)34 + ");";
 		}
 		
 		for (int i = 0; i < numbers; i++) {
-			
-			inserts2[i] += "INSERT TO worksOn VALUES("
+			inserts2[i] = "";
+			inserts2[i] += "INSERT INTO worksOn VALUES("
 					+ (char)34 + "E-"+ ((int) (Math.random() * 19)) + (char)34+", " 
 					+ (char)34 + "PROJ-" + i +(char)34+ ", "
 					+ (char)34 + generateDateWorks() + (char)34 + ", "
@@ -169,10 +174,11 @@ public class Generate {
 		int len = insert.length + inserts2.length;
 		String[] inserts3 = new String[len];
 		
-		 
 		System.arraycopy(insert, 0, inserts3, 0, insert.length);
 		System.arraycopy(inserts2, 0, inserts3, insert.length, inserts2.length);
-
+		
+		projInsert = inserts3;
+		
 		return inserts3;
 
 	}
