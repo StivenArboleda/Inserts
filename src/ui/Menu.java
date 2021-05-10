@@ -14,7 +14,7 @@ public class Menu {
 	private final String PRINCIPAL_MENU = "principal menu"
 			+"\n 1.Employee."
 			+"\n 2.Proyect."
-			+"\n 4.Exit & generate.\n";
+			+"\n 3.Exit & generate.\n";
 	
 	private boolean exit;
 	private BufferedReader bReader;
@@ -45,10 +45,11 @@ public class Menu {
 				
 				runOption(option, bwriter);
 				
-			} catch (IOException IOE) {
-				// TODO: handle exception
+			} catch (IOException iOE) {
+				System.err.println("Unexpected error.");
+				iOE.printStackTrace();
 			} catch (NumberFormatException NFE) {
-				// TODO: handle exception
+				System.err.println("Invalid option, please enter one of the following numbers: 1,2,3.");
 			}
 				
 		}
@@ -60,8 +61,9 @@ public class Menu {
 			bReader.close();
 			bwriter.close();
 			
-		} catch (IOException IOE) {
-			// TODO: handle exception
+		} catch (IOException iOE) {
+			System.err.println("Unexpected error.");
+			iOE.printStackTrace();
 		} 
 		
 		
@@ -87,10 +89,10 @@ public class Menu {
 	private void runOption(int op,BufferedWriter bwriter) {
 		switch (op) {
 		case 1:
-			runOptionTwo(bwriter);
+			runOptionOne(bwriter);
 			break;
 		case 2:
-			runOptionThree(bwriter);
+			runOptionTwo(bwriter);
 			break;
 		case 3:
 			exit = true;
@@ -100,113 +102,44 @@ public class Menu {
 		
 	}
 	
-//	private void runOptionOne(BufferedWriter bwriter) {
-//		try {
-//			writeLine(" - type how many names you are going to generate: ", bwriter);
-//			int names = Integer.parseInt(readLine(bReader));
-//			if(names < 20) {
-//				System.out.println("El número debe serinimo 20");
-//				runOptionOne(bwriter);
-//			}else {
-//				String[] str = generate.genereInsertDeparment(names);
-//				
-//				for(int i = 0; i < str.length; i++) {
-//					System.out.println(str[i]);
-//				}
-//			}
-//			
-//		}catch (IOException e) {
-//			// TODO: handle exception
-//		}
-//		
-//	}
-		
-	
-	private void runOptionTwo(BufferedWriter bwriter) {
+	private void runOptionOne(BufferedWriter bwriter) {
 		try {
 			writeLine(" - type how many EMPLOYEE you are going to generate: ", bwriter);
 			int ammount = Integer.parseInt(readLine(bReader));
 			if (ammount < 20) {
 				throw new NumberFormatException();
 			}
-			String[] str = generate.generateInsertEmployee(ammount);
 			
-			for(int i = 0; i < str.length; i++) {
-				System.out.println(str[i]);
-			}
-			System.out.println(generate.generateUpdate());
+			generate.generateInsertEmployee(ammount);
 			
-		}catch (IOException e) {
-			
+		}catch (IOException iOE) {
+			System.err.println("Unexpected error.");
+			iOE.printStackTrace();
 		}catch (NumberFormatException NfE) {
 			System.err.println("The number of employees must be over 20.");
 			
 		}
 	}
 	
-	private void runOptionThree(BufferedWriter bwriter) {
+	private void runOptionTwo(BufferedWriter bwriter) {
 		try {
 			writeLine(" - type how many PROJECTS you are going to generate: ", bwriter);
 			int ammount  = Integer.parseInt(readLine(bReader));
 			if (ammount < 20) {
 				throw new NumberFormatException();
 			}
-			String[] str = generate.generateInsertProject(ammount);
-			//System.out.println(generate.generateInsertProject(names));
-			for(int i = 0; i < str.length; i++) {
-				System.out.println(str[i]);
-			}
 			
-		}catch (IOException e) {
-			// TODO: handle exception
+			generate.generateInsertProject(ammount);
+
+		}catch (IOException iOE) {
+			System.err.println("Unexpected error.");
+			iOE.printStackTrace();
 		}catch (NumberFormatException NfE) {
-			System.err.println("The number of employees must be over 20.");
+			System.err.println("The number of projects must be over 20.");
 			
 		}
 	}
 
-		
-//	
-//	private void validateDate(String dOB) throws NumberFormatException{
-//		
-//		String[] arDOB = dOB.split("/");
-//
-//		if (!(arDOB.length == 3)) {
-//			throw new NumberFormatException("0");
-//			
-//		}else if (!(Integer.parseInt(arDOB[0]) > 0 && Integer.parseInt(arDOB[0]) <= 31)) {
-//			throw new NumberFormatException("1");
-//			
-//		}else if (!(Integer.parseInt(arDOB[1]) > 0 && Integer.parseInt(arDOB[1]) <= 12)) {
-//			throw new NumberFormatException("2");
-//			
-//		}else if (!(Integer.parseInt(arDOB[2]) > 1959 && Integer.parseInt(arDOB[2]) <= 2003)) {
-//			throw new NumberFormatException("3");
-//			
-//		}
-//		
-//	}
-	
-//	private void validateDateWO(String dOB) throws NumberFormatException{
-//		String[] arDOB = dOB.split("/");
-//
-//		if (!(arDOB.length == 3)) {
-//			throw new NumberFormatException("0");
-//			
-//		}else if (!(Integer.parseInt(arDOB[0]) > 0 && Integer.parseInt(arDOB[0]) <= 31)) {
-//			throw new NumberFormatException("1");
-//			
-//		}else if (!(Integer.parseInt(arDOB[1]) > 0 && Integer.parseInt(arDOB[1]) <= 12)) {
-//			throw new NumberFormatException("2");
-//			
-//		}else if (!(Integer.parseInt(arDOB[2]) > 1959 && Integer.parseInt(arDOB[2]) <= 2021)) {
-//			throw new NumberFormatException("3");
-//			
-//		}
-//		
-//	}
-	
-	
 	private void export() {
 		try {
 
@@ -240,11 +173,14 @@ public class Menu {
 				bWriter.write(generate.getwOInsert());
 	
 			}
-
+			
+			bWriter.write(generate.generateUpdate());
+			
 			bWriter.close();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (IOException iOE) {
+			System.err.println("Unexpected error.");
+			iOE.printStackTrace();
 		}
 	}
 

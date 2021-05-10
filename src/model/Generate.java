@@ -8,7 +8,7 @@ public class Generate {
 	private String[] empInsert;
 	private String[] projInsert;
 	private String wOInsert;
-	private String idDept;
+	//private String idDept;
 	
 	
 	public Generate() {
@@ -16,7 +16,7 @@ public class Generate {
 		empInsert = new String [] {};
 		projInsert = new String [] {};
 		wOInsert = "";
-		idDept = "";
+		//idDept = "";
 		
 	}
 
@@ -26,7 +26,7 @@ public class Generate {
 		for (int i = 0; i < deptInsert.length; i++) {
 			re += deptInsert[i] +"\n";
 		}
-		re += generateUpdate();
+		
 		return re;
 	}
 
@@ -71,25 +71,25 @@ public class Generate {
 		for (int i = 0; i < ammount; i++) {
 			
 			if( i < 20) {
-				insert[i] = "INSERT INTO employee VALUES(" 
-				+ (char)34 + "E-"+ i + (char)34+", " 
-				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
-				+ (char)34 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)34+ ", "
-				+ (char)34 + generateAddres() + (char)34+ ", "
-				+ (char)34 + generateDOB()+(char)34+ ", "
+				insert[i] = "INSERT INTO EMPLOYEE VALUES(" 
+				+ (char)39 + "E-"+ i + (char)39+", " 
+				+ (char)39 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)39+ ", "
+				+ (char)39 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)39+ ", "
+				+ (char)39 + generateAddres() + (char)39+ ", "
+				+ (char)39 + generateDOB()+(char)39+ ", "
 				+ genereteSex() +", "
-				+ (char)34 + "Jefe" + (char)34 + ", "
-				+ (char)34 + "E" + i +(char)34 + ");";
+				+ (char)39 + "Jefe" + (char)39 + ", "
+				+ (char)39 + "D" + i +(char)39 + ");";
 			}else {
-				insert[i] = "INSERT INTO employee VALUES(" 
-				+ (char)34 + "E-"+ i + (char)34+", " 
-				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
-				+ (char)34 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)34+ ", "
-				+ (char)34 + generateAddres() + (char)34+ ", "
-				+ (char)34 + generateDOB()+(char)34+ ", "
+				insert[i] = "INSERT INTO EMPLOYEE VALUES(" 
+				+ (char)39 + "E-"+ i + (char)39+", " 
+				+ (char)39 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)39+ ", "
+				+ (char)39 + lastname[(int) (Math.floor(Math.random() * ((lastname.length - 1) - 0 + 1) + 0))]+ (char)39+ ", "
+				+ (char)39 + generateAddres() + (char)39+ ", "
+				+ (char)39 + generateDOB()+(char)39+ ", "
 				+ genereteSex() +", "
-				+ (char)34 + position[(int) (Math.floor(Math.random() * ((position.length - 1) - 0 + 1) + 0))]+ (char)34 + ", " 
-				+ (char)34 + "E" +((int) (Math.random() * 20)) + (char)34 + ");";
+				+ (char)39 + position[(int) (Math.floor(Math.random() * ((position.length - 1) - 0 + 1) + 0))]+ (char)39 + ", " 
+				+ (char)39 + "D" +((int) (Math.random() * 20)) + (char)39 + ");";
 			}				
 		}
 		
@@ -107,11 +107,11 @@ public class Generate {
 
 
 		for (int i = 0; i < name.length; i++) {
-			insert[i] = "INSERT INTO deparment VALUES("
-				+ (char)34 + "D"+ i + (char)34+", " 
-				+ (char)34 + name[i] + (char)34+ ", "
+			insert[i] = "INSERT INTO DEPARTMENT VALUES("
+				+ (char)39 + "D"+ i + (char)39+", " 
+				+ (char)39 + name[i] + (char)39+ ", "
 				+ "NULL);";
-			idDept += "D"+ i +","; 
+		//	idDept += "D"+ i +","; 
 		}
 
 		return insert;
@@ -121,7 +121,7 @@ public class Generate {
 	private String genereteSex() {
 		String[] genre = {"F", "M"};
 		
-		return (char)34 + genre[(int) (Math.floor(Math.random() * ((genre.length - 1  ) - 0 + 1) + 0))] + (char)34;
+		return (char)39 + genre[(int) (Math.floor(Math.random() * ((genre.length - 1  ) - 0 + 1) + 0))] + (char)39;
 	}
 	
 	private String generateAddres() {
@@ -156,19 +156,19 @@ public class Generate {
 		
 		for (int i = 0; i < numbers; i++) {
 			insert[i] = "";
-			insert[i] += "INSERT INTO project VALUES("
-				+ (char)34 + "PROJ-"+ i + (char)34+", " 
-				+ (char)34 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)34+ ", "
-				+ (char)34 + "E"+((int)(Math.random() * 19)+1) + (char)34 + ");";
+			insert[i] += "INSERT INTO PJCT VALUES("
+				+ (char)39 + "PROJ-"+ i + (char)39+", " 
+				+ (char)39 + name[(int) (Math.floor(Math.random() * ((name.length - 1  ) - 0 + 1) + 0))] + (char)39+ ", "
+				+ (char)39 + "D"+((int)(Math.random() * 19)+1) + (char)39 + ");";
 		}
 		
 		for (int i = 0; i < numbers; i++) {
 			inserts2[i] = "";
-			inserts2[i] += "INSERT INTO worksOn VALUES("
-					+ (char)34 + "E-"+ ((int) (Math.random() * 19)) + (char)34+", " 
-					+ (char)34 + "PROJ-" + i +(char)34+ ", "
-					+ (char)34 + generateDateWorks() + (char)34 + ", "
-					+ (char)34 + ((int) (Math.random() * 150) + 1 ) + (char)34 + ");";
+			inserts2[i] += "INSERT INTO WORKSON VALUES("
+					+ (char)39 + "E-"+ ((int) (Math.random() * 19)) + (char)39+", " 
+					+ (char)39 + "PROJ-" + i +(char)39+ ", "
+					+ (char)39 + generateDateWorks() + (char)39 + ", "
+					+ (char)39 + ((int) (Math.random() * 150) + 1 ) + (char)39 + ");";
 		}
 		
 		int len = insert.length + inserts2.length;
@@ -200,9 +200,11 @@ public class Generate {
 		String str = "";
 		
 		for (int i = 0; i < 20; i++) {
-			str += "\nUPDATE deparment \n"
-				+ "SET mgrEmpNo = E-" + i + "\n"
-				+ "WHERE deptNo = D" + i + "\n";
+			str += "\nUPDATE DEPARTMENT \n"
+				+ "SET mgrEmpNo = "
+				+ (char)39 + "E-" + i + (char)39 + "\n"
+				+ "WHERE deptNo = "
+				+ (char)39 + "D" + i + (char)39 +";\n";
 		}
 		
 		return str;
