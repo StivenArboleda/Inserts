@@ -3,7 +3,7 @@
 
 The code found here is a script which helps with the creation of the sql INSERT function for specific [tables](#Tables).
 
-The script generates a .sql file in the [Data](https://github.com/StivenArboleda/Inserts/tree/master/data "Data") folder with the inserts, this file can be loaded into SQLDevelopment.
+The script generates a Inserts.sql file in the [Data](https://github.com/StivenArboleda/Inserts/tree/master/data "Data") folder with the inserts, this file can be loaded into SQLDevelopment.
 
 Finally, this script is fully developed in **Java**.
 
