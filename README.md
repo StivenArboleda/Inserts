@@ -1,5 +1,5 @@
 
-# INSERTS CREATOR
+# 🖥️INSERTS CREATOR
 
 The code found here is a script which helps with the creation of the sql INSERT function for specific [tables](#Tables).
 
@@ -54,7 +54,7 @@ Finally, this script is fully developed in **Java**.
 
 ------------
 
-### Specs
+### Specs‼️
 
 * Departments are randomly generated. They are **20 in total in any case**.
 
@@ -72,6 +72,7 @@ Finally, this script is fully developed in **Java**.
 #### Console
 
 Menu
+
 ![](https://github.com/StivenArboleda/Inserts/blob/master/images/Menu.jpeg)
 
 - To run you must use the Java -jar command followed by the name of the executable, in this case InsertsExecutable
@@ -79,6 +80,16 @@ Menu
 
 
 ------------
+
+### 🗂️Files
+
+✅ [DDL.sql](* The **inserts for the WorksOn table** are created randomly according to the Projects "DDL")
+ 
+ ✅ [Inserts.sql](https://github.com/StivenArboleda/Inserts/blob/master/data/Inserts.sql "Inserts")
+ 
+ ✅ [Queries.sql](https://github.com/StivenArboleda/Inserts/blob/master/data/QUERIES.sql "Queries.sql")
+ 
+ ------------
 
 #### Members:
 
