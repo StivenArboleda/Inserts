@@ -137,7 +137,7 @@ public class Generate {
 	
 	private String generateDOB() {
 		
-		int min = 1965;
+		int min = 1949;
 		int max = 2003;
 		Random rand = new Random();
 		
